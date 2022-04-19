@@ -4,16 +4,8 @@ import { AuthContext } from '../../contexts/auth'
 
 import * as S from './styles'
 
-type AuthResponse = {
-	id: string;
-  name: string;
-	email: string;
-	birthdate: string;
-	gender: string;
-}
-
 export function LoginBox() {
-  const { signIn, statusCode } = useContext(AuthContext)
+  const { signIn, statusCode, user } = useContext(AuthContext)
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -65,7 +57,7 @@ export function LoginBox() {
           Entrar
         </S.Button>
       </S.FormLogin>
-
+      {console.log("user", user)}
       {(statusCode && statusCode == 401) && (
         <S.LoginWarning>
           <p>Email e/ou senha incorretos.</p>
