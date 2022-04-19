@@ -10,7 +10,7 @@ export const MainContainer = styled.main`
   position: relative;
 `
 
-export const ContentWrapper = styled.div`
+export const Content = styled.div`
   height: 100%;
   margin: 0 auto;
   max-width: 1176px;

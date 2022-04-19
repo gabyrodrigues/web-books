@@ -10,3 +10,10 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
 `
+
+export const Wrapper = styled.div`
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
-export const FormLogin = styled.div`
-  align-self: center;
+export const FormLogin = styled.form`
   display: flex;
   flex-direction: column;
   max-width: 368px;
@@ -63,21 +62,45 @@ export const Label = styled.label`
 `
 
 export const Button = styled.button`
-  background-color: ${props => props.theme.colors.background};
-  border: 0;
-  border-radius: 44px;
-  color: ${props => props.theme.colors.primary};
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.3;
-  padding: 8px 20px;
+background-color: ${props => props.theme.colors.background};
+border: 0;
+border-radius: 44px;
+color: ${props => props.theme.colors.primary};
+cursor: pointer;
+font-size: 16px;
+font-weight: 600;
+line-height: 1.3;
+padding: 8px 20px;
 
-  bottom: 12px;
+bottom: 12px;
   position: absolute;
   right: 12px;
 
   &:hover {
     background-color: ${props => props.theme.colors.darken};
+  }
+  `
+
+export const LoginWarning = styled.div`
+  background-color: ${props => props.theme.colors.lighten};
+  border-radius: 4px;
+  color: ${props => props.theme.colors.light};
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 24px;
+  padding: 16px;
+  position: relative;
+
+  &:after {
+    content: "";
+
+    border-color: transparent transparent ${props => props.theme.colors.lighten} transparent;
+    border-style: solid;
+    border-width: 8px;
+
+    bottom: 100%;
+    left: 16px;
+    position: absolute;
   }
 `

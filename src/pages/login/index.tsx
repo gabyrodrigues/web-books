@@ -1,13 +1,15 @@
 import { LoginBox } from '../../components/LoginBox'
-import { ContentWrapper } from '../../styles/general'
-import { Container } from './styles'
+import { Content } from '../../styles/general'
+import { Container, Wrapper } from './styles'
 
 const Login: React.FC = () => {
   return (
     <Container>
-      <ContentWrapper>
-        <LoginBox />
-      </ContentWrapper>
+      <Content>
+        <Wrapper>
+          <LoginBox />
+        </Wrapper>
+      </Content>
     </Container>
   )
 }
