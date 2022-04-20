@@ -1,5 +1,3 @@
-import axios from 'axios'
+import { getAPIClient } from "./axios";
 
-export const api = axios.create({
-  baseURL: 'https://books.ioasys.com.br/api/v1'
-})
+export const api = getAPIClient()

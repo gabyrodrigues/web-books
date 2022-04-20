@@ -59,6 +59,8 @@ export function AuthProvider(props: AuthProvider) {
         maxAge: 30 * 24 * 60 * 60
       })
 
+      api.defaults.headers['Authorization'] = `Bearer ${token}`
+
       setUser(user)
       setStatusCode(response.status)
 
