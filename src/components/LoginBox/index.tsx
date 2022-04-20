@@ -57,7 +57,7 @@ export function LoginBox() {
           Entrar
         </S.Button>
       </S.FormLogin>
-      {console.log("user", user)}
+
       {(statusCode && statusCode == 401) && (
         <S.LoginWarning>
           <p>Email e/ou senha incorretos.</p>

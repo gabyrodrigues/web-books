@@ -77,6 +77,8 @@ export function AuthProvider(props: AuthProvider) {
     setUser(null)
     destroyCookie(null, '@ioasys-books:token')
     destroyCookie(null, '@ioasys-books:user')
+
+    Router.push('/')
     // localStorage.removeItem('@ioasys-books:token')
   }
 
