@@ -21,6 +21,16 @@ type Book = {
 }
 
 export function BookDetails({ book, closeDetails }) {
+  function listAuthors() {
+    let authors = ""
+
+    book.authors.map((author: string, index: number) => (
+      authors += index < book.authors.length - 1 ? author + ", " : author + ""
+    ))
+
+    return authors
+  }
+
   return (
     <S.Overlay>
       <S.DetailsWraper>
@@ -43,9 +53,7 @@ export function BookDetails({ book, closeDetails }) {
             <h6>{book.title}</h6>
 
             <p>
-              {book.authors.map((author: string, index: number) => (
-                <span key={index}>{author}</span>
-              ))}
+              {listAuthors()}
             </p>
           </S.BlockTitle>
 

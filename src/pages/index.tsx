@@ -1,12 +1,13 @@
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BooksList } from '../components/BooksList'
 import { Header } from '../components/Header'
 import { AuthContext } from '../contexts/auth'
+import { api } from '../services/api'
 
 import { getAPIClient } from '../services/axios'
-import { Container, Content, Wrapper } from '../styles/general'
+import { Container, Content, Spinner, Wrapper } from '../styles/general'
 
 
 type Book = {
@@ -24,17 +25,65 @@ type Book = {
   published: number;
 }
 
-type BooksProps = {
-  books: Book[];
+type Pagination = {
+  totalItems: number,
+  totalPages: number;
 }
 
-const Home: React.FC = ({ books }: BooksProps) => {
+type BooksProps = {
+  books: Book[];
+  pagination: Pagination[];
+}
+
+const Home: React.FC = (props: BooksProps) => {
+  const [page, setPage] = useState(1)
+  const [books, setBooks] = useState<Book[]>(props.books)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const handleBooks = async () => {
+      // console.log("Page", page)
+      setLoading(true)
+      try {
+        await api.get(`/books?page=${page}&amount=12`)
+        .then(({ data }) => {
+          console.log("data fetch", data)
+          setBooks(data.data)
+          setLoading(false)
+        })
+      } catch (err) {
+        setLoading(false)
+        console.log(err)
+      }
+    }
+
+    handleBooks()
+  }, [page])
+
+  const handlePageChange = async (count: number) => {
+    // console.log("count", count)
+    setPage(count)
+    // await handleBooks()
+  }
+
+  // useEffect(() => {console.log("pages", page)})
+
   return (
     <Container>
     <Content>
       <Wrapper>
         <Header />
-        <BooksList books={books} />
+        {loading ? (
+          <Spinner />
+        ) : (
+          <BooksList
+            books={books}
+            onChangePage={handlePageChange}
+            page={page}
+            pagination={props.pagination}
+            loading={loading}
+          />
+        )}
       </Wrapper>
     </Content>
   </Container>
@@ -55,30 +104,56 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
-  const { data } = await apiClient.get('/books?page=1&amount=12')
+  const page = 1
 
-  const books = data.data.map(book => {
-    return {
-      id: book.title,
-      authors: book.authors,
-      title: book.title,
-      description: book.description,
-      pageCount: Number(book.pageCount),
-      category: book.category,
-      imageUrl: book.imageUrl,
-      language: book.language,
-      isbn10: book.isbn10,
-      isbn13: book.isbn13,
-      publisher: book.publisher,
-      published: Number(book.published)
+  try {
+    const { data } = await apiClient.get(`/books?page=${page}&amount=12`)
+
+    const books = data.data.map((book: Book) => {
+      return {
+        id: book.title,
+        authors: book.authors,
+        title: book.title,
+        description: book.description,
+        pageCount: Number(book.pageCount),
+        category: book.category,
+        imageUrl: book.imageUrl,
+        language: book.language,
+        isbn10: book.isbn10,
+        isbn13: book.isbn13,
+        publisher: book.publisher,
+        published: Number(book.published)
+      }
+    })
+
+    const pagination = {
+      totalItems: data.totalItems,
+      totalPages: data.totalPages
     }
-  })
 
-  return {
-    props: {
-      books
+    return {
+      props: {
+        books,
+        pagination
+      }
+    }
+  } catch(error) {
+    const { config } = error
+
+    if(config.url == '/auth/refresh-token') {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false
+        }
+      }
+    }
+
+    return {
+      props: {}
     }
   }
+
 }
 
 export default Home

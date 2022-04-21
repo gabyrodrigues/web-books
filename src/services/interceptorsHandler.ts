@@ -1,4 +1,9 @@
 import axios, { AxiosResponse } from 'axios'
+import { Router } from 'next/router'
+import { destroyCookie } from 'nookies';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/auth';
+import { cleanCookies } from '../utils';
 import createCookie from './createCookie';
 import { refreshToken } from './refreshToken';
 
@@ -14,8 +19,8 @@ export async function errorHandler(error: { response?: any; config?: any }, ctx?
       const refreshTokenResponse = await refreshToken(ctx)
       const { headers } = refreshTokenResponse
 
-      createCookie('@ioasys-books:token', headers.authorization)
-      createCookie('@ioasys-books:refresh-token', headers['refresh-token'])
+      createCookie(ctx, '@ioasys-books:token', headers.authorization)
+      createCookie(ctx, '@ioasys-books:refresh-token', headers['refresh-token'])
 
       const response = await axios({
         headers: {
@@ -28,9 +33,10 @@ export async function errorHandler(error: { response?: any; config?: any }, ctx?
       })
 
       return response
-    }
-    catch(error) {
-      console.log(error)
+    } catch(error) {
+      cleanCookies(ctx)
+
+      return Promise.reject(error)
     }
   }
 

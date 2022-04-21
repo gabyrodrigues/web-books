@@ -100,25 +100,25 @@ export const InfoValue = styled.div`
 `
 
 export const CloseButton = styled.button`
-background: ${props => props.theme.colors.light};
-border: 1px solid ${props => props.theme.colors.border};
-border-radius: 50%;
-cursor: pointer;
-height: 32px;
-margin-left: 16px;
-width: 32px;
+  background: ${props => props.theme.colors.light};
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: 50%;
+  cursor: pointer;
+  height: 32px;
+  margin-left: 16px;
+  width: 32px;
 
-align-items: center;
-display: flex;
-justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 
-position: absolute;
-right: 16px;
-top: 16px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
 
-&:hover {
-  filter: brightness(0.9);
-}
+  &:hover {
+    filter: brightness(0.9);
+  }
 `
 
 export const BookDescription = styled.p`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const MainContainer = styled.main`
   height: 100vh;
@@ -44,3 +44,26 @@ export const Wrapper = styled.div`
   width: 100%;
 `
 
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+
+  background: transparent;
+  border-radius: 50%;
+  border-bottom: 2px solid ${props => props.theme.colors.gray};
+  border-left: 4px solid ${props => props.theme.colors.text};
+  border-right: 2px solid ${props => props.theme.colors.gray};
+  border-top: 2px solid ${props => props.theme.colors.gray};
+  flex-shrink: 0;
+  height: 36px;
+  width: 36px;
+`

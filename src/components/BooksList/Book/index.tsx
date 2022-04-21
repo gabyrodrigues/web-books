@@ -27,6 +27,7 @@ export function Book({ book }) {
         {book.imageUrl ? (
           <Image
             src={book.imageUrl}
+            priority
             height={120}
             width={80}
           />
