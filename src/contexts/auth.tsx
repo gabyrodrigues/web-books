@@ -3,6 +3,7 @@ import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 
 import { api } from '../services/api'
+import createCookie from '../services/createCookie'
 
 
 type User = {
@@ -35,7 +36,7 @@ export function AuthProvider(props: AuthProvider) {
 
   useEffect(() => {
     const { '@ioasys-books:user': user } = parseCookies()
-
+    console.log("user", user)
     if(user) {
       setUser(JSON.parse(user))
     }
@@ -46,18 +47,15 @@ export function AuthProvider(props: AuthProvider) {
       email,
       password
     }).then((response) => {
-      const user = response.data
-      const token = response.headers.authorization
       console.log(response)
 
-      // localStorage.setItem('@ioasys-books:token', token)
-      setCookie(undefined, '@ioasys-books:token', token, {
-        maxAge: 30 * 24 * 60 * 60
-      })
+      const user = response.data
+      const token = response.headers['authorization']
+      const refreshToken = response.headers['refresh-token']
 
-      setCookie(undefined, '@ioasys-books:user', JSON.stringify(user), {
-        maxAge: 30 * 24 * 60 * 60
-      })
+      createCookie('@ioasys-books:token', token)
+      createCookie('@ioasys-books:refresh-token', refreshToken)
+      createCookie('@ioasys-books:user', JSON.stringify(user))
 
       api.defaults.headers['Authorization'] = `Bearer ${token}`
 
@@ -70,16 +68,15 @@ export function AuthProvider(props: AuthProvider) {
     }).catch(({ response }) => {
       setStatusCode(response.status)
     })
-
   }
 
   function signOut() {
     setUser(null)
     destroyCookie(null, '@ioasys-books:token')
+    destroyCookie(null, '@ioasys-books:refresh-token')
     destroyCookie(null, '@ioasys-books:user')
 
     Router.push('/')
-    // localStorage.removeItem('@ioasys-books:token')
   }
 
   return(

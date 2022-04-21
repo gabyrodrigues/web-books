@@ -72,8 +72,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { data } = await apiClient.get('/books?page=1&amount=12')
 
-  console.log("books server side", data)
-
   const books = data.data.map(book => {
     return {
       id: book.title,

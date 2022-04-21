@@ -6,6 +6,7 @@ import Document, {
   Main,
   NextScript
 } from 'next/document'
+import { ReactElement } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
@@ -36,7 +37,7 @@ export default class MyDocument extends Document {
     }
   }
 
-  render(): JSX.Element {
+  render(): ReactElement {
     return (
       <Html lang="pt">
         <Head>

@@ -18,16 +18,18 @@ type Book = {
 }
 
 export function Book({ book }) {
-  useEffect(() => {
-    // console.log("props", props)
-  }, [])
-
   return (
     <>
       <S.Book>
-        {book.imageUrl && (
+        {book.imageUrl ? (
           <Image
             src={book.imageUrl}
+            height={120}
+            width={80}
+          />
+        ) : (
+          <Image
+            src={'/book-default.png'}
             height={120}
             width={80}
           />
@@ -37,8 +39,8 @@ export function Book({ book }) {
           <S.BlockTitle>
             <h6>{book.title}</h6>
 
-            {book.authors.map((author: string) => (
-              <p>{author}</p>
+            {book.authors.map((author: string, index: number) => (
+              <p key={index}>{author}</p>
             ))}
           </S.BlockTitle>
 
