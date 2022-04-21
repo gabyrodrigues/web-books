@@ -1,4 +1,4 @@
-import { setCookie } from "nookies"
+import { setCookie } from 'nookies'
 
 export default function createCookie(cookieTitle:string, cookieValue: string) {
   const cookie = setCookie(undefined, cookieTitle, cookieValue, {

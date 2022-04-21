@@ -4,10 +4,20 @@ export const Book = styled.li`
   background: #FFFFFF;
   box-shadow: 0px 6px 24px rgba(84, 16, 95, 0.13);
   border-radius: 4px;
+  cursor: pointer;
 
   align-items: center;
   display: flex;
   padding: 20px 16px;
+
+  &:hover {
+    filter: brightness(0.97);
+  }
+
+  > span {
+    border-radius: 2px;
+    box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.15);
+  }
 `
 
 export const BookInfo = styled.div`

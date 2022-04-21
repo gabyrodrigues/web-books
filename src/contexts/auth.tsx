@@ -36,7 +36,7 @@ export function AuthProvider(props: AuthProvider) {
 
   useEffect(() => {
     const { '@ioasys-books:user': user } = parseCookies()
-    console.log("user", user)
+
     if(user) {
       setUser(JSON.parse(user))
     }
@@ -47,8 +47,6 @@ export function AuthProvider(props: AuthProvider) {
       email,
       password
     }).then((response) => {
-      console.log(response)
-
       const user = response.data
       const token = response.headers['authorization']
       const refreshToken = response.headers['refresh-token']
@@ -61,8 +59,6 @@ export function AuthProvider(props: AuthProvider) {
 
       setUser(user)
       setStatusCode(response.status)
-
-      console.log(user, token)
 
       Router.push('/')
     }).catch(({ response }) => {

@@ -1,5 +1,6 @@
-import Image from 'next/image';
-import { useEffect } from 'react'
+import Image from 'next/image'
+import { useState } from 'react'
+import { BookDetails } from '../../BookDetails';
 import * as S from './styles'
 
 type Book = {
@@ -18,9 +19,11 @@ type Book = {
 }
 
 export function Book({ book }) {
+  const [isBookDetailsOpen, setIsBookDetailsOpen] = useState<boolean>(false);
+
   return (
     <>
-      <S.Book>
+      <S.Book onClick={() => setIsBookDetailsOpen(true)}>
         {book.imageUrl ? (
           <Image
             src={book.imageUrl}
@@ -51,6 +54,8 @@ export function Book({ book }) {
           </S.BlockInfo>
         </S.BookInfo>
       </S.Book>
+
+      {isBookDetailsOpen && <BookDetails book={book} closeDetails={() => setIsBookDetailsOpen(false)} />}
     </>
   )
 }

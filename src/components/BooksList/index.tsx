@@ -22,10 +22,6 @@ type BooksProps = {
 }
 
 export function BooksList({ books }: BooksProps) {
-  useEffect(() => {
-    // console.log("props", props)
-  }, [])
-
   return (
     <>
       <S.BooksList>

@@ -29,21 +29,6 @@ type BooksProps = {
 }
 
 const Home: React.FC = ({ books }: BooksProps) => {
-  // useEffect(() => {
-  //   async function listBooks() {
-  //     await api.get('/books?page=1&amount=12')
-  //     .then(({ data }) => {
-  //       // console.log(data.data)
-
-  //       setBooks(data.data)
-  //     }).catch(({ error }) => {
-  //       console.log(error)
-  //     })
-  //   }
-
-  //   listBooks()
-  // }, [])
-
   return (
     <Container>
     <Content>
