@@ -8,7 +8,7 @@ export const Book = styled.li`
 
   align-items: center;
   display: flex;
-  padding: 20px 16px;
+  padding: 20px ${props => props.theme.spacing.medium};
 
   &:hover {
     filter: brightness(0.97);
@@ -17,6 +17,10 @@ export const Book = styled.li`
   > span {
     border-radius: 2px;
     box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (max-width: 767px) {
+    flex-basis: 100%;
   }
 `
 
@@ -31,7 +35,7 @@ export const BookInfo = styled.div`
 
 export const BlockTitle = styled.div`
   h6 {
-    font-size: 14px;
+    font-size: ${props => props.theme.fonts.medium};
     font-weight: 500;
     line-height: 1;
     margin-bottom: 4px;
@@ -39,13 +43,13 @@ export const BlockTitle = styled.div`
 
   p {
     color: ${props => props.theme.colors.secondary};
-    font-size: 12px;
+    font-size: ${props => props.theme.fonts.small};
   }
 `
 
 export const BlockInfo = styled.div`
   p {
     color: ${props => props.theme.colors.gray};
-    font-size: 12px;
+    font-size: ${props => props.theme.fonts.small};
   }
 `

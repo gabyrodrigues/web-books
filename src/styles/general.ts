@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const MainContainer = styled.main`
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   max-width: 1365px;
   width: 100%;
@@ -18,16 +18,24 @@ export const FlexWrapper = styled.div`
 export const Content = styled.div`
   height: 100%;
   margin: 0 auto;
-  max-width: 1176px;
-  padding: 0 20px;
+  min-height: 100vh;
+  padding: 0 40px;
   width: 100%;
 
   display: flex;
   position: relative;
+
+  @media (min-width: 768px) {
+    max-width: 1136px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 0 20px;
+  }
 `
 
 export const Container = styled.div`
-  background-color: #000;
+  background-color: ${props => props.theme.colors.light};
   background-image: url(/background-home.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -35,6 +43,10 @@ export const Container = styled.div`
 
   align-items: center;
   display: flex;
+
+  @media (max-width: 767px) {
+    background-repeat: repeat-y;
+  }
 `
 
 export const Wrapper = styled.div`

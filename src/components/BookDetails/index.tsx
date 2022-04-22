@@ -33,16 +33,18 @@ export function BookDetails({ book, closeDetails }) {
 
   return (
     <S.Overlay>
-      <S.DetailsWraper>
+      <S.DetailsWrapper>
         {book.imageUrl ? (
           <Image
             src={book.imageUrl}
+            alt={book.title}
             height={512}
             width={348}
           />
         ) : (
           <Image
             src={'/book-default.png'}
+            alt={book.title}
             height={512}
             width={348}
           />
@@ -90,7 +92,7 @@ export function BookDetails({ book, closeDetails }) {
             </S.BookDescription>
           </S.BlockInfo>
         </S.BookInfo>
-      </S.DetailsWraper>
+      </S.DetailsWrapper>
 
       <S.CloseButton onClick={closeDetails}>
         <FiX color="#333" size="16" />

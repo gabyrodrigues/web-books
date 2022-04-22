@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DetailsWraper = styled.div`
+export const DetailsWrapper = styled.div`
   background: #FFFFFF;
   box-shadow: 0px 6px 24px rgba(84, 16, 95, 0.13);
   border-radius: 4px;
@@ -9,14 +9,27 @@ export const DetailsWraper = styled.div`
 
   align-items: center;
   display: flex;
-  padding: 48px;
+  padding: ${props => props.theme.spacing.huge};
 
   > span {
     box-shadow: 0px 12px 18px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 767px) {
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    height: 90%;
+    margin-top: ${props => props.theme.spacing.huge};
+    overflow-y: auto;
+    padding: ${props => props.theme.spacing.medium};
   }
 `
 export const Overlay = styled.div`
   background-color: rgba(242, 243, 245, 0.8);
+  overflow-y: auto;
   z-index: 10;
 
   align-items: center;
@@ -28,6 +41,10 @@ export const Overlay = styled.div`
   position: fixed;
   right: 0;
   top: 0;
+
+  @media (max-width: 767px) {
+    padding: 0 ${props => props.theme.spacing.medium};
+  }
 `
 export const BookInfo = styled.div`
   display: flex;
@@ -35,26 +52,37 @@ export const BookInfo = styled.div`
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  padding-left: 48px;
+  padding-left: ${props => props.theme.spacing.huge};
+
+  @media (max-width: 767px) {
+    padding-left: 0;
+    padding-top: ${props => props.theme.spacing.big};
+  }
 `
 
 export const BlockTitle = styled.div`
   h6 {
-    font-size: 28px;
+    font-size: ${props => props.theme.fonts.huge};
     font-weight: 500;
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: ${props => props.theme.spacing.small};
+
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   p {
     color: ${props => props.theme.colors.secondary};
-    font-size: 12px;
+    font-size: ${props => props.theme.fonts.small};
   }
 `
 
 export const HeadingTitle = styled.strong`
   flex: 1 1 100%;
-  font-size: 12px;
+  font-size: ${props => props.theme.fonts.small};
   font-weight: 500;
   margin-bottom: 12px;
   text-transform: uppercase;
@@ -76,7 +104,7 @@ export const InfoTitle = styled.div`
   flex-direction: column;
 
   > strong {
-    font-size: 12px;
+    font-size: ${props => props.theme.fonts.small};
     font-weight: 500;
 
     & + strong {
@@ -91,7 +119,7 @@ export const InfoValue = styled.div`
 
   > p {
     color: ${props => props.theme.colors.gray};
-    font-size: 12px;
+    font-size: ${props => props.theme.fonts.small};
 
     & + p {
       margin-top: 2px;
@@ -105,7 +133,7 @@ export const CloseButton = styled.button`
   border-radius: 50%;
   cursor: pointer;
   height: 32px;
-  margin-left: 16px;
+  margin-left: ${props => props.theme.spacing.medium};
   width: 32px;
 
   align-items: center;
@@ -113,8 +141,8 @@ export const CloseButton = styled.button`
   justify-content: center;
 
   position: absolute;
-  right: 16px;
-  top: 16px;
+  right: ${props => props.theme.spacing.medium};
+  top: ${props => props.theme.spacing.medium};
 
   &:hover {
     filter: brightness(0.9);
@@ -123,7 +151,7 @@ export const CloseButton = styled.button`
 
 export const BookDescription = styled.p`
   color: ${props => props.theme.colors.gray};
-  font-size: 12px;
+  font-size: ${props => props.theme.fonts.small};
   line-height: 1.6;
 
   & > svg {

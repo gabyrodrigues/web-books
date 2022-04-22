@@ -40,33 +40,24 @@ const Home: React.FC = (props: BooksProps) => {
   const [books, setBooks] = useState<Book[]>(props.books)
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    const handleBooks = async () => {
-      // console.log("Page", page)
-      setLoading(true)
-      try {
-        await api.get(`/books?page=${page}&amount=12`)
-        .then(({ data }) => {
-          console.log("data fetch", data)
-          setBooks(data.data)
-          setLoading(false)
-        })
-      } catch (err) {
+  const handleBooks = async (page: number) => {
+    setLoading(true)
+    try {
+      api.get(`/books?page=${page}&amount=12`)
+      .then(({ data }) => {
+        setBooks(data.data)
         setLoading(false)
-        console.log(err)
-      }
+      })
+    } catch (error) {
+      setLoading(false)
+      console.error(error)
     }
-
-    handleBooks()
-  }, [page])
-
-  const handlePageChange = async (count: number) => {
-    // console.log("count", count)
-    setPage(count)
-    // await handleBooks()
   }
 
-  // useEffect(() => {console.log("pages", page)})
+  const handlePageChange = async (count: number) => {
+    setPage(count)
+    handleBooks(count)
+  }
 
   return (
     <Container>

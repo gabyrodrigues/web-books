@@ -22,6 +22,7 @@ export function LoginBox() {
         <S.LoginHeader>
           <Image
             src='/logo.svg'
+            alt='ioasys'
             height={36}
             width={104}
           />

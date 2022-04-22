@@ -4,15 +4,25 @@ export const PaginationWrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  margin-top: 16px;
+  margin-top: ${props => props.theme.spacing.medium};
 
   > p {
-    font-size: 12px;
-    margin-right: 16px;
+    font-size: ${props => props.theme.fonts.small};
+    margin-right: ${props => props.theme.spacing.medium};
 
     > strong {
       font-weight: 500;
     }
+
+    @media (max-width: 767px) {
+      & > p {
+        margin-right: 0;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    justify-content: center;
   }
 `
 
@@ -35,6 +45,13 @@ export const PaginateButton = styled.button`
   }
 
   & + & {
-    margin-left: 8px;
+    margin-left: ${props => props.theme.spacing.small};
+  }
+
+  @media (max-width: 767px) {
+    &:first-of-type {
+      margin-right: ${props => props.theme.spacing.medium};
+      order: -1;
+    }
   }
 `

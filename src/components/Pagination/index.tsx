@@ -26,7 +26,7 @@ export function Pagination({ page, pagination, onChangePage, loading }) {
         </S.PaginateButton>
         <S.PaginateButton
           onClick={() => onChangePage(page + 1)}
-          disabled={page >= pagination.lastPage || loading}
+          disabled={page >= lastPage || loading}
         >
           <FiChevronRight />
         </S.PaginateButton>

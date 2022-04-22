@@ -9,15 +9,18 @@ export const Header = styled.div`
 `
 
 export const Title = styled.h1`
-  font-size: 28px;
+  font-size: ${props => props.theme.fonts.huge};
   font-weight: 300;
-  margin-left: 16px;
+  margin-left: ${props => props.theme.spacing.medium};
 `
 
 export const Greeting = styled.h1`
-  font-size: 12px;
+  font-size: ${props => props.theme.fonts.small};
   font-weight: 300;
-  margin-left: 16px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `
 
 export const SignOutButton = styled.button`
@@ -26,7 +29,7 @@ export const SignOutButton = styled.button`
   border-radius: 50%;
   cursor: pointer;
   height: 32px;
-  margin-left: 16px;
+  margin-left: ${props => props.theme.spacing.medium};
   width: 32px;
 
   align-items: center;

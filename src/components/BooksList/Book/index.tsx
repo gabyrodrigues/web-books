@@ -24,20 +24,13 @@ export function Book({ book }) {
   return (
     <>
       <S.Book onClick={() => setIsBookDetailsOpen(true)}>
-        {book.imageUrl ? (
-          <Image
-            src={book.imageUrl}
-            priority
-            height={120}
-            width={80}
-          />
-        ) : (
-          <Image
-            src={'/book-default.png'}
-            height={120}
-            width={80}
-          />
-        )}
+        <Image
+          src={book.imageUrl ? book.imageUrl : '/book-default.png'}
+          alt={book.title}
+          priority
+          height={120}
+          width={80}
+        />
 
         <S.BookInfo>
           <S.BlockTitle>

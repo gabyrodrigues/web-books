@@ -68,8 +68,8 @@ export function AuthProvider(props: AuthProvider) {
   }
 
   function signOut() {
-    setUser(null)
     cleanCookies(null)
+    setUser(null)
 
     Router.push('/login')
   }
