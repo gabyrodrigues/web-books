@@ -14,7 +14,27 @@
   </a>
 </p>
 
-## Updates
+## :rocket: Running the application
+
+- ### **Prerequisites**
+
+  - It's **necessary** to install **[Node.js](https://nodejs.org/en/)** on your machine
+  - Also, it's **necessary** to have a package manager, either **[NPM](https://www.npmjs.com/)** or **[Yarn](https://yarnpkg.com/)**.
+
+1. Clone the project:
+
+  ```
+  git@github.com:gabyrodrigues/web-books.git
+  ```
+2. Running the application:
+
+  ```
+    # Install the dependencies
+    $ yarn install
+
+    # Run the application
+    $ yarn dev
+  ```
 
 ## :computer: Languages and Frameworks
 
@@ -35,7 +55,7 @@
   * **react-icons**:  ^4.3.1
   * **styled-components**:  ^5.3.5
 
-	- #### Dev Dependencies
+- #### Dev Dependencies
   * **@types/cookie**: ^0.5.0,
   * **@types/node**: ^17.0.25,
   * **@types/react**: ^18.0.5,
